@@ -21,7 +21,7 @@ public:
     
     static constexpr int BITMASK = 1 << 8;
     Collider2D(Entity* entity);
-    void SetOrigin(sf::Vector2f newPos) { mOrigin = newPos; }
+    void SetCenter(sf::Vector2f newPos) { mCenter = newPos; }
     void SetType(ColliderType nType) { mColliderType = nType; }
     void SetLastGridPosition(const CellCoords& newPosition) { mLastGridPosition = newPosition; }
     void SetTrigger(bool trig) { mIsTrigger = trig;}
@@ -31,7 +31,7 @@ public:
 
     bool IsTrigger() const { return mIsTrigger; }
     bool IsStatic() const { return mIsStatic; }
-    sf::Vector2f GetOrigin() const { return mOrigin; }
+    sf::Vector2f GetCenter() const { return mCenter; }
     int GetBitmask() override;
     ColliderType GetColliderType() const { return mColliderType; }
     CellCoords GetLastGridPosition() const {return mLastGridPosition; }
@@ -52,7 +52,7 @@ public:
 protected:
     bool mIsTrigger;
     bool mIsStatic;
-    sf::Vector2f mOrigin;
+    sf::Vector2f mCenter;
     CellCoords mLastGridPosition;
     ColliderType mColliderType;
     sf::Shape* mpShape;

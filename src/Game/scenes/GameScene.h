@@ -1,6 +1,6 @@
 #pragma once
 #include "Managers/Scene.h"
-#include "scripts/Inventory.h"
+
 class GameScene : public Scene
 {
     void OnEnter() override;
@@ -8,4 +8,5 @@ class GameScene : public Scene
     void OnFixedUpdate() override {}
     void Render() override {}
     void OnUpdate() override;
+
 };

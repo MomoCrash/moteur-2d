@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "RenderSystem.h"
 
+#include <ranges>
+
+#include "CameraSystem.h"
 #include "Transform.h"
 #include "ECS/ECS.h"
 #include "../Components/SpriteRenderer.h"
@@ -11,31 +14,31 @@ RenderSystem::RenderSystem(RenderWindow* window): window(window) {}
 
 void RenderSystem::Render(ECS* globalEC)
 {
-    for (int i = 0; i < globalEC->mEntityCount; i++)
+    for (auto const& entity : std::views::values(globalEC->mEntitiesByLayer))
     {
-        if (globalEC->HasComponent<SpriteRenderer>(i))
+        for(Entity* entities : *entity)
         {
-            SpriteRenderer* renderer = globalEC->GetComponent<SpriteRenderer>(i);
-            sf::Vector2f size = renderer->Image->getGlobalBounds().size;
-            size /= 2.0f;
-            TRANSFORM* transform = renderer->GetEntity()->GetTransform();
-            renderer->Image->setPosition(transform->position);
-            renderer->Image->setScale(transform->scale);
-            renderer->Image->setRotation(transform->rotation);
+            if (globalEC->HasComponent<SpriteRenderer>(entities->GetId()))
+            {
+                SpriteRenderer* renderer = globalEC->GetComponent<SpriteRenderer>(entities->GetId());
+                sf::Vector2f size = renderer->Image->getGlobalBounds().size * 0.5f;
+                TRANSFORM* transform = renderer->GetEntity()->GetTransform();
+                renderer->Image->setPosition(transform->position - size);
+                renderer->Image->setScale(transform->scale);
+                renderer->Image->setRotation(transform->rotation);
             
-            renderer->Image->setOrigin(size);
-            if (!renderer->RendererShader)
-                window->Draw(renderer->Image);
-            else
-                window->Draw(renderer->Image, renderer->RendererShader);
+                if (!renderer->RendererShader)
+                    window->Draw(renderer->Image);
+                else
+                    window->Draw(renderer->Image, renderer->RendererShader);
+            }
+
+            if(globalEC->HasComponent<Collider2D>(entities->GetId()))
+            {
+                Collider2D* coll = globalEC->GetComponent<Collider2D>(entities->GetId());
+                window->Draw(coll->GetShape());
+            }
         }
-#ifdef _DEBUG
-        if(globalEC->HasComponent<Collider2D>(i))
-        {
-            Collider2D* coll = globalEC->GetComponent<Collider2D>(i);
-            window->Draw(coll->GetShape());
-        }
-#endif
         
     }
 }

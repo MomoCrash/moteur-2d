@@ -6,8 +6,8 @@ struct TRANSFORM;
 class Entity
 {
 public:
-    Entity();
-    Entity(Entity* parent);
+    Entity(int layer = 0);
+    Entity(Entity* parent, int layer = 0);
     ~Entity();
 
     enum class Tag : uint8_t
@@ -45,6 +45,9 @@ public:
     void SetTag(Tag nTag) { mTag = nTag; }
     bool IsTag(Tag oTag) const { return mTag == oTag; }
     [[nodiscard]] Tag GetTag() const { return mTag; }
+
+    int GetLayer() const { return mLayer; }
+    void SetLayer(int nLayer) { mLayer = nLayer; }
     
     TRANSFORM* GetTransform() const {return mTransform; }
     int Bitmask;
@@ -54,6 +57,7 @@ protected:
     bool mDestoyed;
     int mId;
     int mIndex;
+    int mLayer;
     Tag mTag;
     
 private:

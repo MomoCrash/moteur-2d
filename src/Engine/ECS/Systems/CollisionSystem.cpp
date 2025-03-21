@@ -17,7 +17,7 @@ CollisionSystem& CollisionSystem::Get()
 
 CollisionSystem::CollisionSystem()
 {
-    mGrid = new SpatialGrid(100.0f, 0,0,20,10);
+    mGrid = new SpatialGrid(100.0f, -20,-10,20,10);
 }
 
 
@@ -97,8 +97,8 @@ void CollisionSystem::UpdateColliders(ECS* globalEC)
 
         Collider2D* collider = globalEC->GetComponent<Collider2D>(i);
         Entity* entity = collider->GetEntity();
-        collider->SetOrigin(entity->GetTransform()->position);
-        collider->GetShape()->setPosition(collider->GetOrigin());
+        collider->SetCenter(entity->GetTransform()->position);
+        collider->GetShape()->setPosition(entity->GetTransform()->position - collider->GetShape()->getGlobalBounds().size * 0.5f); 
 
         mGrid->UpdateEntity(entity);
     }
@@ -147,7 +147,7 @@ void CollisionSystem::ResolvePositions()
             sf::Vector2f correction = collisionNormal * (correctionAmount * ratio1 * mFixedTimestep);
             pos = pos - correction;
             entity1->GetTransform()->position = pos;
-            collider1->SetOrigin(pos);
+            collider1->SetCenter(pos);
         }
         else if (!collider1->IsStatic())
         {
@@ -155,7 +155,7 @@ void CollisionSystem::ResolvePositions()
             sf::Vector2f correction = collisionNormal * (correctionAmount);
             pos = pos - correction;
             entity1->GetTransform()->position = pos;
-            collider1->SetOrigin(pos);
+            collider1->SetCenter(pos);
         }
         
         if (rb2 && !collider2->IsStatic())
@@ -165,7 +165,7 @@ void CollisionSystem::ResolvePositions()
             sf::Vector2f correction = collisionNormal * (correctionAmount * ratio2 * mFixedTimestep);
             pos = pos - correction;
             entity2->GetTransform()->position = pos;
-            collider2->SetOrigin(pos);
+            collider2->SetCenter(pos);
         }
         else if (!collider2->IsStatic())
         {
@@ -173,7 +173,7 @@ void CollisionSystem::ResolvePositions()
             sf::Vector2f correction = collisionNormal * (correctionAmount);
             pos = pos - correction;
             entity2->GetTransform()->position = pos;
-            collider2->SetOrigin(pos);
+            collider2->SetCenter(pos);
         }
     }
 }
@@ -306,7 +306,7 @@ void CollisionSystem::OnFixedUpdate(ECS* globalEC)
                 
         ResolvePositions();
         
-        //ResolveVelocities();
+        ResolveVelocities();
         
     }
     

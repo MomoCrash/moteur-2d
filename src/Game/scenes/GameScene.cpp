@@ -13,7 +13,6 @@
 #include "scripts/MusicScript.h"
 #include "scripts/resources/Craft.h"
 
-
 void GameScene::OnEnter()
 {
 
@@ -34,7 +33,6 @@ void GameScene::OnEnter()
 
     Entity* expBar = ObjectFactory::CreateEntity<Entity>();
     ObjectFactory::CreateComponent<Image>(expBar, Resources::instance().DEFAULT_SPRITE);
-
     
 }
 
