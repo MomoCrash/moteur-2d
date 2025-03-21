@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include <windows.h>
 
+class UserInterfaceSystem;
 class RenderWindow;
 class ScriptManager;
 class ParticleSystem;
@@ -40,6 +40,7 @@ private:
     static CollisionSystem* GetCollisionSystem();
     static ParticleSystem* GetParticleSystem();
     static ScriptManager* GetScriptManager();
+    static UserInterfaceSystem* GetUserInterface();
 
     GameManager* mGameManager;
 
@@ -50,6 +51,7 @@ private:
     CameraSystem* mCameraSystem;
     ParticleSystem* mParticleSystem;
     ScriptManager* mScriptManager;
+    UserInterfaceSystem* mUserInterface;
 
     RenderWindow* mRenderWindow;
 

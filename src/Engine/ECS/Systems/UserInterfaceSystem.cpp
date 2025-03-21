@@ -19,20 +19,31 @@ void UserInterfaceSystem::Render(ECS* globalEC)
         if (globalEC->HasComponent<Image>(i))
         {
             Image* image = globalEC->GetComponent<Image>(i);
-            image->UIImage->setPosition(cameraTransform->position);
+            image->UIImage->setPosition(cameraTransform->position + image->ScreenPosition);
             window->Draw(image->UIImage);
         }
-        /*if (globalEC->HasComponent<Button>(i))
+        if (globalEC->HasComponent<Button>(i))
         {
             Button* button = globalEC->GetComponent<Button>(i);
-            button-> ->setPosition(cameraTransform->position);
+            sf::Vector2f currentPosition = cameraTransform->position + button->ScreenPosition;
+            button->UIImage->setPosition(currentPosition);
             window->Draw(button->UIImage);
+            sf::Vector2f mClickPosition = sf::Vector2f(sf::Mouse::getPosition()) + currentPosition;
+
+            if (!(mClickPosition.x < currentPosition.x
+                || mClickPosition.x > currentPosition.x + button->Width
+                || mClickPosition.y > currentPosition.y
+                || mClickPosition.y < currentPosition.y + button->Height)) {
+                button->CallBack();
+            }
         }
         if (globalEC->HasComponent<ProgressBar>(i))
         {
-            ProgressBar* button = globalEC->GetComponent<ProgressBar>(i);
-            button-> ->setPosition(cameraTransform->position);
-            window->Draw(button->UIImage);
-        }*/
+            ProgressBar* progressBar = globalEC->GetComponent<ProgressBar>(i);
+            progressBar->BackgroundImage->setPosition(cameraTransform->position + progressBar->ScreenPosition);
+            progressBar->Bar->setPosition(cameraTransform->position + progressBar->ScreenPosition + progressBar->BarOffset);
+            progressBar->Bar->setScale({progressBar->Progress/progressBar->Maximum, 1.0f});
+            window->Draw(progressBar->BackgroundImage);
+        }
     }
 }

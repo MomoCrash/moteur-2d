@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+class ECS;
+class RenderWindow;
 
 class UserInterfaceSystem
 {

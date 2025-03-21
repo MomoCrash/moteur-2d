@@ -32,7 +32,7 @@ void GameScene::OnEnter()
     ObjectFactory::CreateComponent<Camera>(camera);
 
     Entity* expBar = ObjectFactory::CreateEntity<Entity>();
-    ObjectFactory::CreateComponent<Image>(expBar, Resources::instance().DEFAULT_SPRITE);
+    ObjectFactory::CreateComponent<Image>(expBar, Resources::instance().DEFAULT_SPRITE, sf::Vector2f(50.0f, 50.0f));
     
 }
 

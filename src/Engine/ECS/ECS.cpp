@@ -11,6 +11,7 @@
 #include "Systems/ParticleSystem.h"
 #include "Systems/PhysicsSystem.h"
 #include "Systems/RenderSystem.h"
+#include "Systems/UserInterfaceSystem.h"
 
 ECS::ECS(): mEntityCount(0), mEntityToAddCount(0), mEntityToRemoveCount(0)
 {
@@ -123,6 +124,7 @@ void ECS::Update()
 void ECS::Draw()
 {
     Engine::GetScriptManager()->OnRender(Engine::GetRenderWindow());
+    Engine::GetUserInterface()->Render(this);
     Engine::GetRenderSystem()->Render(this);
     Engine::GetParticleSystem()->Render(this);
 }

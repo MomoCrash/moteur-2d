@@ -1,9 +1,9 @@
 ﻿#include "pch.h"
 #include "Image.h"
 
-Image::Image(Entity* entity, Sprite* sprite): Component(entity)
+Image::Image(Entity* entity, Sprite* uiImage, sf::Vector2f position) : Component(entity), ScreenPosition(position),
+                                                                       UIImage(uiImage)
 {
-    UIImage = sprite;
 }
 
 int Image::GetBitmask()

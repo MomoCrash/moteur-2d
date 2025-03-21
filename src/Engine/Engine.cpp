@@ -10,12 +10,13 @@
 #include "scripts/ScriptManager.h"
 
 #include "ECS/ECS.h"
+#include "ECS/Systems/UserInterfaceSystem.h"
 #include "Render/RenderWindow.h"
 
 Engine::Engine() : mGameManager(new GameManager()), mECS(new ECS()), mRenderSystem(nullptr),
                    mPhysicsSystem(new PhysicsSystem()), mCollisionSystem(new CollisionSystem()), mCameraSystem(nullptr),
                    mParticleSystem(nullptr),
-                   mScriptManager(new ScriptManager()),
+                   mScriptManager(new ScriptManager()), mUserInterface(nullptr),
                    mRenderWindow(nullptr)
 {
 }
@@ -46,6 +47,7 @@ void Engine::CreateRender()
     instance().mCameraSystem = new CameraSystem(window);
     instance().mRenderSystem = new RenderSystem(window);
     instance().mParticleSystem = new ParticleSystem(window);
+    instance().mUserInterface = new UserInterfaceSystem(window);
 
     instance().mRenderWindow = window;
 }
@@ -88,6 +90,11 @@ ParticleSystem* Engine::GetParticleSystem()
 ScriptManager* Engine::GetScriptManager()
 {
     return instance().mScriptManager;
+}
+
+UserInterfaceSystem* Engine::GetUserInterface()
+{
+    return instance().mUserInterface;
 }
 
 float Engine::GetDeltaTime()
