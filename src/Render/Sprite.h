@@ -9,7 +9,7 @@ class Sprite : public sf::Sprite
 public:
     Sprite(Texture& sprite);
     Sprite(sf::Sprite& sprite);
-    ~Sprite() = default;
+    ~Sprite() override = default;
     
     void SetAlpha(uint8_t alpha);
     

@@ -9,6 +9,7 @@
 #include "../Components/SpriteRenderer.h"
 #include "ECS/Components/Collider2D.h"
 #include "ECS/Components/Camera.h"
+#include "ECS/Components/Tilemap.h"
 #include "ECS/Components/ui/Image.h"
 #include "Render/RenderWindow.h"
 

@@ -10,6 +10,7 @@
 
 #include <windows.h>
 #include <iostream>
+#include <fstream>
 
 #include <sstream>
 #define CONSOLE_OUTPUT(s) { std::wostringstream os_; os_ << s; OutputDebugStringW(os_.str().c_str());};
@@ -17,5 +18,7 @@
 
 #include "Utils/Debug.h"
 #include "Utils/Profiler.h"
+#include "Inputs/Mouse.h"
+#include "Inputs/Keyboard.h"
 
 #endif
