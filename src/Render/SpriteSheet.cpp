@@ -1,38 +1,40 @@
 ﻿#include "SpriteSheet.h"
 
 #include "Sprite.h"
-#include "Engine/Utils/Debug.h"
+#include "Texture.h"
 
-SpriteSheet::SpriteSheet(Sprite* spriteSheet): spriteSheet(spriteSheet)
+SpriteSheet::SpriteSheet(Texture& spriteSheet) : Sprite(spriteSheet), SpriteCount(0)
 {
 }
 
 void SpriteSheet::Extract(int startX, int startY, int singleWidth, int singleHeight, int width, int height)
 {
 
-    if (!spriteSheet)
-    {
-        Debug::Log("Sprite sheet can't be extract file not found or not load.");
-    }
+    size.x = singleWidth;
+    size.y = singleHeight;
 
     for (int x = startX; x < startX+width; x+=singleWidth)
     {
         for (int y = startY; y < startY+height; y+=singleHeight)
         {
-
-            sprites.push_back(spriteSheet->Cut(x, y, singleWidth, singleHeight));
-            
+            sprites.push_back( {x, y} );
+            SpriteCount++;
         }
     }
     
 }
 
-Sprite* SpriteSheet::GetSprite(int index)
+sf::Vector2i SpriteSheet::GetSpriteSheetPart(int index)
 {
     return sprites[index];
 }
 
-std::vector<Sprite*> SpriteSheet::GetSprites() const
+void SpriteSheet::SetSpriteAt(sf::Vector2i offset)
 {
-    return sprites;
+    setTextureRect({offset, size});
+}
+
+void SpriteSheet::SetSprite(int index)
+{
+    setTextureRect({sprites[index], size});
 }

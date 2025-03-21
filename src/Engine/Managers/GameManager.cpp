@@ -3,6 +3,7 @@
 
 #include "GameTimer.h"
 #include "ECS/ECS.h"
+#include "Inputs/Inputs.h"
 #include "Render/RenderWindow.h"
 #include "Utils/Debug.h"
 #include "Utils/Profiler.h"
@@ -54,6 +55,9 @@ void GameManager::HandleInput()
         IsStopped = true;
         Engine::GetRenderWindow()->close();
     }
+
+    Inputs::UpdateKeyboard();
+    Inputs::UpdateMouse();
 }
 
 

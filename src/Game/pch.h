@@ -10,8 +10,11 @@
 
 #include <windows.h>
 #include <iostream>
+#include <fstream>
 
 #include "Utils/Debug.h"
 #include "Utils/Profiler.h"
+#include "Inputs/Mouse.h"
+#include "Inputs/Keyboard.h"
 
 #endif

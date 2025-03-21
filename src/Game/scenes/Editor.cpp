@@ -7,10 +7,7 @@
 #include "ObjectFactory.h"
 #include "ECS/Components/Camera.h"
 #include "ECS/Components/SpriteRenderer.h"
-#include "ECS/Components/RigidBody2D.h"
-#include "ECS/Components/ui/Image.h"
-#include "scripts/PlayerMovement.h"
-#include "scripts/tilemap/TilemapEditor.h"
+#include "ECS/Components/Tilemap.h"
 
 void Editor::OnEnter()
 {
@@ -19,7 +16,11 @@ void Editor::OnEnter()
     gridContainer->GetTransform()->SetPosition(0.0f, 0.0f);
     ObjectFactory::CreateComponent<SpriteRenderer>(gridContainer, Resources::instance().DEFAULT_SPRITE);
 
-    ObjectFactory::AttachScript<TilemapEditor>(gridContainer);
+    /*ObjectFactory::AttachScript<TilemapEditor>(gridContainer,
+        "../../res/Tiles/tileset.png",
+        "../../res/Tiles/saved/scene0.png");*/
+
+    ObjectFactory::CreateComponent<Tilemap>(gridContainer, "../../res/Tiles/saved/scene0.txt");
     
     Entity* player = ObjectFactory::CreateEntity<Entity>();
     player->GetTransform()->SetPosition(0.0f, 0.0f);

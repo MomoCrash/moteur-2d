@@ -8,7 +8,6 @@ Sprite::Sprite(Texture& texture) : sf::Sprite(texture)
 
 Sprite::Sprite(sf::Sprite& sprite) : sf::Sprite(sprite)
 {
-    return;
 }
 
 void Sprite::SetAlpha(uint8_t alpha)

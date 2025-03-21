@@ -6,7 +6,6 @@
 #include "Managers/GameManager.h"
 
 #include "scenes/Editor.h"
-#include "scenes/GameScene.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, int showCmd)
 {
