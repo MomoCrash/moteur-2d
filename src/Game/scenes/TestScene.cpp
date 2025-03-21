@@ -18,7 +18,7 @@ void TestScene::OnEnter()
 
     Resources::instance().Initialize();
     
-    player = ObjectFactory::CreateEntity<Entity>();
+    player = ObjectFactory::CreateEntity<Entity>(1);
     player->GetTransform()->SetPosition(0.0f, 0.0f);
     ObjectFactory::CreateComponent<SpriteRenderer>(player, Resources::instance().DEFAULT_SPRITE);
     //ObjectFactory::CreateComponent<AABBCollider>(player, 0.0f,0.0f,10.0f,10.0f);
@@ -28,14 +28,14 @@ void TestScene::OnEnter()
     ObjectFactory::AttachScript<PlayerMovement>(player);
 
     
-    Entity* other = ObjectFactory::CreateEntity<Entity>();
+    Entity* other = ObjectFactory::CreateEntity<Entity>(0);
     other->GetTransform()->SetPosition(250.0f,250.0f);
     ObjectFactory::CreateComponent<AABBCollider>(other, 0.0f,0.0f,100.0f,100.0f);
     //ObjectFactory::CreateComponent<CircleCollider>(other, 100.0f);
-    other->GetComponent<AABBCollider>()->SetStatic(true);
+    other->GetComponent<AABBCollider>()->SetTrigger(true);
     //other->GetComponent<CircleCollider>()->SetStatic(true);
 
-    Entity* other2 = ObjectFactory::CreateEntity<Entity>();
+    Entity* other2 = ObjectFactory::CreateEntity<Entity>(0);
     other2->GetTransform()->SetPosition(350.0f,350.0f);
     ObjectFactory::CreateComponent<AABBCollider>(other2, 0.0f,0.0f,100.0f,100.0f);
     //ObjectFactory::CreateComponent<CircleCollider>(other2, 100.0f);

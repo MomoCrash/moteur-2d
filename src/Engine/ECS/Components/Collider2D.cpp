@@ -10,9 +10,10 @@ Collider2D::Collider2D(Entity* entity) : Component(entity)
 {
     mColliderType = ColliderType::COLLIDER_COUNT;
 
-    mOrigin = entity->GetTransform()->position;
+    mCenter = entity->GetTransform()->position;
     mIsTrigger = false;
     mIsStatic = false;
+    SetCenter(entity->GetTransform()->position);
 
     ObjectFactory::CreateComponent<PhysicsMaterial>(entity);
 }
@@ -50,8 +51,8 @@ CollisionManifold Collider2D::CheckCollisionCircleCircle(Collider2D* Collider)
     CircleCollider* CCollider1 = static_cast<CircleCollider*>(this);
     CircleCollider* CCollider2 = static_cast<CircleCollider*>(Collider);
     
-    float a = CCollider1->mOrigin.x - CCollider2->mOrigin.x;
-    float b = CCollider1->mOrigin.y - CCollider2->mOrigin.y;
+    float a = CCollider1->mCenter.x - CCollider2->mCenter.x;
+    float b = CCollider1->mCenter.y - CCollider2->mCenter.y;
     float c = (a * a) + (b * b); 
     float radiusSum = CCollider1->GetRadius() + CCollider2->GetRadius();
 
@@ -59,7 +60,7 @@ CollisionManifold Collider2D::CheckCollisionCircleCircle(Collider2D* Collider)
     {  
         manifold.hasCollision = true;
 
-        manifold.collisionNormal = (CCollider1->mOrigin - CCollider2->mOrigin).normalized();
+        manifold.collisionNormal = (CCollider1->mCenter - CCollider2->mCenter).normalized();
         manifold.penetrationDepth = radiusSum - std::sqrt(c);
     }
 

@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <map>
 #include <vector>
 
 class Component;
@@ -39,10 +40,12 @@ public:
     int mEntityCount;
     int mEntityToAddCount;
     int mEntityToRemoveCount;
+    std::map<int, std::list<Entity*>*> mEntitiesByLayer;
 
 private:
     EC** mEntities = new EC*[16000];
     EC** mToAddEntities = new EC*[1024];
+
     
     int** mToRemoveEntityIndex = new int*[512];
 };

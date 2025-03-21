@@ -7,16 +7,16 @@
 
 int Entity::sNextId = 0;
 
-Entity::Entity() : Bitmask(0), mCreated(false), mDestoyed(false), mId(sNextId), mIndex(0),
-                   mTransform(new TRANSFORM(nullptr))
+Entity::Entity(int layer) : Bitmask(0), mCreated(false), mDestoyed(false), mId(sNextId), mIndex(0),
+                   mTransform(new TRANSFORM(nullptr)), mLayer(layer)
 {
     mTag = Tag::NONE;
     sNextId++;
 }
 
-Entity::Entity(Entity* parent) : Bitmask(0),
+Entity::Entity(Entity* parent, int layer) : Bitmask(0),
                    mCreated(false), mDestoyed(false), mId(sNextId), mIndex(0),
-                   mTransform(new TRANSFORM(parent))
+                   mTransform(new TRANSFORM(parent)), mLayer(layer)
 {
     parent->GetTransform()->AddChild(this);
     mTag = Tag::NONE;
