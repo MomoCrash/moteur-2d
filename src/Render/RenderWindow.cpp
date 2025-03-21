@@ -3,8 +3,8 @@
 #include "Colors.h"
 #include "Sprite.h"
 
-RenderWindow::RenderWindow(const std::string title, const int width, const int height, uint32_t style)
-: sf::RenderWindow(sf::VideoMode(sf::Vector2u(width, height)), title, style, sf::State::Fullscreen)
+RenderWindow::RenderWindow(const std::string title, const int width, const int height, uint32_t style, sf::State state)
+: sf::RenderWindow(sf::VideoMode(sf::Vector2u(width, height)), title, style, state)
 {}
 
 void RenderWindow::BeginFrame()

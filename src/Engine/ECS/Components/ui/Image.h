@@ -1,6 +1,8 @@
 ﻿#pragma once
+
 #include "ECS/Components/Component.h"
-#include "Render/Sprite.h"
+
+class Sprite;
 
 class Image : public Component
 {

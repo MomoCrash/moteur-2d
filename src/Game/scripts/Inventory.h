@@ -5,8 +5,9 @@
 #include "scripts/Script.h"
 
 #include <array>
+#include <set>
 
-enum EBonus
+enum class BonusType : int32_t
 {
 	NONE_BONUS,
 	SLOWSPEED,
@@ -18,7 +19,7 @@ enum EBonus
 
 };
 
-enum EMalus
+enum class MalusType : int32_t
 {
 	NONE_MALUS,
 	FASTSPEED,
@@ -29,7 +30,7 @@ enum EMalus
 	COUNT_MALUS
 };
 
-enum ItemList
+enum Material
 {
 	SWORD,
 	ARMOR,
@@ -54,8 +55,8 @@ struct Item
 	unsigned int actualCount = 0;
 	unsigned int maxCount = 0;
 	bool isActive = false;
-	EBonus bonus = NONE_BONUS;
-	EMalus malus = NONE_MALUS;
+	std::set<MalusType, float> malus;
+	std::set<BonusType, float> bonuses;
 };
 
 class Inventory : public IScript

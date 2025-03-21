@@ -5,21 +5,19 @@ void Inventory::OnStart()
 {
 	items =
 	{
-		Item{ ItemList::SWORD, 0, 1, false, EBonus::EFFICIENCY, EMalus::FASTSPEED },
-		Item{ ItemList::ARMOR, 0, 1, false, EBonus::SLOWSPEED, EMalus::SMALLERCIRCLE},
-		Item{ ItemList::AXE, 0, 1, false, EBonus::EFFICIENCY, EMalus::DECREASEHP },
-		Item{ ItemList::PICKAXE, 0, 1, false, EBonus::EFFICIENCY, EMalus::FASTSPEED },
-		Item{ ItemList::PENDANTIF, 0, 1, false, EBonus::INCREASEHP, EMalus::SMALLERCIRCLE},
-		Item{ ItemList::ROLLER, 0, 1, false, EBonus::NONE_BONUS, EMalus::FASTSPEED },
-
-		Item{ ItemList::HEALTH_POTION, 0, 5, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-
-		Item{ ItemList::WOOD1, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-		Item{ ItemList::WOOD2, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-		Item{ ItemList::WOOD3, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-		Item{ ItemList::STONE1, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-		Item{ ItemList::STONE2, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
-		Item{ ItemList::STONE3, 0, 20, false, EBonus::NONE_BONUS, EMalus::NONE_MALUS },
+		Item{ Material::SWORD, 0, 1, false, {}, {} },
+		Item{ Material::ARMOR, 0, 1, false, {}, {} },
+		Item{ Material::AXE, 0, 1, false, {}, {} },
+		Item{ Material::PICKAXE, 0, 1, false, {}, {} },
+		Item{ Material::PENDANTIF, 0, 1, false, {}, {} },
+		Item{ Material::ROLLER, 0, 1, false, {}, {} },
+		Item{ Material::HEALTH_POTION, 0, 5,false, {}, {} },
+		Item{ Material::WOOD1, 0, 20, false, {}, {} },
+		Item{ Material::WOOD2, 0, 20, false, {}, {} },
+		Item{ Material::WOOD3, 0, 20, false, {}, {} },
+		Item{ Material::STONE1, 0, 20, false, {}, {} },
+		Item{ Material::STONE2, 0, 20, false, {}, {} },
+		Item{ Material::STONE3, 0, 20, false, {}, {} },
 	};
 	DisplayInventory();
 }
@@ -105,8 +103,6 @@ void Inventory::DisplayInventory()
 			CONSOLE_OUTPUT(L"Actual Count: " << item.actualCount << std::endl);
 			CONSOLE_OUTPUT(L"Max Count: " << item.maxCount << std::endl);
 			CONSOLE_OUTPUT(L"Is Active: " << (item.isActive ? L"Yes" : L"No") << std::endl);
-			CONSOLE_OUTPUT(L"Bonus: " << item.bonus << std::endl);
-			CONSOLE_OUTPUT(L"Malus: " << item.malus << std::endl);
 			CONSOLE_OUTPUT(L"----------------------" << std::endl);
 		}
 	}

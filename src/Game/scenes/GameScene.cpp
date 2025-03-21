@@ -11,6 +11,7 @@
 
 #include "scripts/PlayerMovement.h"
 #include "scripts/MusicScript.h"
+#include "scripts/resources/Craft.h"
 
 
 void GameScene::OnEnter()
@@ -23,9 +24,10 @@ void GameScene::OnEnter()
     ObjectFactory::CreateComponent<SpriteRenderer>(player, Resources::instance().DEFAULT_SPRITE);
     player->SetTag(Entity::Tag::PLAYER);
     
-    ObjectFactory::AttachScript<MusicScript>(player);
+    //ObjectFactory::AttachScript<MusicScript>(player);
     ObjectFactory::AttachScript<PlayerMovement>(player);
     ObjectFactory::AttachScript<Inventory>(player);
+    ObjectFactory::AttachScript<Craft>(player);
     
     Entity* camera = ObjectFactory::CreateEntity<Entity>();
     ObjectFactory::CreateComponent<Camera>(camera);
