@@ -14,5 +14,4 @@ int ProgressBar::GetBitmask()
 
 void ProgressBar::SetPercent(float percent)
 {
-    pe
 }

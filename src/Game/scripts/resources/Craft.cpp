@@ -13,7 +13,6 @@ void Craft::OnStart()
 
 void Craft::OnUpdate()
 {
-
     
 }
 

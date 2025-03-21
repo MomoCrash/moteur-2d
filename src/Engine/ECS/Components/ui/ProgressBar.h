@@ -11,6 +11,7 @@ public:
     ProgressBar(Entity* entity, Sprite* background, Sprite* barImage);
     ~ProgressBar() override = default;
     int GetBitmask() override;
+    void SetPercent(float percent);
 
     Sprite* BackgroundImage;
     Sprite* Bar;

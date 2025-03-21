@@ -25,8 +25,8 @@ void GameScene::OnEnter()
     
     //ObjectFactory::AttachScript<MusicScript>(player);
     ObjectFactory::AttachScript<PlayerMovement>(player);
-    ObjectFactory::AttachScript<Inventory>(player);
-    ObjectFactory::AttachScript<Craft>(player);
+    Inventory* inventory = ObjectFactory::AttachScript<Inventory>(player);
+    ObjectFactory::AttachScript<Craft>(player, inventory);
     
     Entity* camera = ObjectFactory::CreateEntity<Entity>();
     ObjectFactory::CreateComponent<Camera>(camera);
