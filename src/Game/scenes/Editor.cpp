@@ -20,7 +20,7 @@ void Editor::OnEnter()
         "../../res/Tiles/tileset.png",
         "../../res/Tiles/saved/scene0.png");*/
 
-    ObjectFactory::CreateComponent<Tilemap>(gridContainer, "../../res/Tiles/saved/scene0.txt");
+    //ObjectFactory::CreateComponent<Tilemap>(gridContainer, "../../res/Tiles/saved/scene0.txt");
     
     Entity* player = ObjectFactory::CreateEntity<Entity>();
     player->GetTransform()->SetPosition(0.0f, 0.0f);

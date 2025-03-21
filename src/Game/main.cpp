@@ -18,7 +18,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, PSTR cmdLine, in
 
     Resources::instance().Initialize();
     
-    Engine::GetGameManager()->LaunchScene<TestScene>();
+    Engine::GetGameManager()->LaunchScene<Editor>();
   
     return 0;
 }
