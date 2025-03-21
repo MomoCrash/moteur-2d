@@ -2,6 +2,7 @@
 
 #include "Colors.h"
 #include "Sprite.h"
+#include "SpriteSheet.h"
 
 RenderWindow::RenderWindow(const std::string title, const int width, const int height, uint32_t style, sf::State state)
 : sf::RenderWindow(sf::VideoMode(sf::Vector2u(width, height)), title, style, state)
@@ -13,6 +14,11 @@ void RenderWindow::BeginFrame()
 }
 
 void RenderWindow::Draw(Sprite* sprite)
+{
+    draw(*sprite);
+}
+
+void RenderWindow::Draw(SpriteSheet* sprite)
 {
     draw(*sprite);
 }

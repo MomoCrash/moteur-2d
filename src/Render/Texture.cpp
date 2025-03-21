@@ -4,8 +4,9 @@
 
 Texture::Texture(std::string name, bool customPath)
 {
-    if (!loadFromFile(customPath ? "" : "../../res/Textures/" + name))
+    path = (customPath ? "" : "../../res/Textures/") + name;
+    if (!loadFromFile(path))
     {
-        Debug::Error("La texture ../../res/Textures/" + name + " was not found.");
+        Debug::Error("La texture " + path + " was not found.");
     }
 }
