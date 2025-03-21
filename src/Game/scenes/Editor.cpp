@@ -8,6 +8,7 @@
 #include "ECS/Components/Camera.h"
 #include "ECS/Components/SpriteRenderer.h"
 #include "ECS/Components/Tilemap.h"
+#include "scripts/tilemap/TilemapEditor.h"
 
 void Editor::OnEnter()
 {
@@ -16,9 +17,9 @@ void Editor::OnEnter()
     gridContainer->GetTransform()->SetPosition(0.0f, 0.0f);
     ObjectFactory::CreateComponent<SpriteRenderer>(gridContainer, Resources::instance().DEFAULT_SPRITE);
 
-    /*ObjectFactory::AttachScript<TilemapEditor>(gridContainer,
+    ObjectFactory::AttachScript<TilemapEditor>(gridContainer,
         "../../res/Tiles/tileset.png",
-        "../../res/Tiles/saved/scene0.png");*/
+        "../../res/Tiles/saved/scene0.png");
 
     //ObjectFactory::CreateComponent<Tilemap>(gridContainer, "../../res/Tiles/saved/scene0.txt");
     
